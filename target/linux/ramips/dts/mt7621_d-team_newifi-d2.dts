@@ -117,14 +117,6 @@
 					#address-cells = <1>;
 					#size-cells = <1>;
 
-					eeprom_factory_0: eeprom@0 {
-						reg = <0x0 0x400>;
-					};
-
-					eeprom_factory_8000: eeprom@8000 {
-						reg = <0x8000 0x200>;
-					};
-
 					macaddr_factory_e000: macaddr@e000 {
 						reg = <0xe000 0x6>;
 					};
@@ -148,28 +140,22 @@
 	status = "okay";
 };
 
-&pcie0 {
-	wifi@0,0 {
-		compatible = "mediatek,mt76";
-		reg = <0x0000 0 0 0 0>;
-		nvmem-cells = <&eeprom_factory_8000>;
-		nvmem-cell-names = "eeprom";
-		ieee80211-freq-limit = <5000000 6000000>;
-	};
-};
-
-&pcie1 {
-	wifi@0,0 {
-		compatible = "mediatek,mt76";
-		reg = <0x0000 0 0 0 0>;
-		nvmem-cells = <&eeprom_factory_0>;
-		nvmem-cell-names = "eeprom";
-	};
-};
-
 &gmac0 {
 	nvmem-cells = <&macaddr_factory_e000>;
 	nvmem-cell-names = "mac-address";
+};
+
+&gmac1 {
+	status = "okay";
+	label = "wan";
+	phy-handle = <&ethphy4>;
+
+	nvmem-cells = <&macaddr_factory_e006>;
+	nvmem-cell-names = "mac-address";
+};
+
+&ethphy4 {
+	/delete-property/ interrupts;
 };
 
 &reg_vbus {
@@ -199,13 +185,6 @@
 		port@3 {
 			status = "okay";
 			label = "lan1";
-		};
-
-		port@4 {
-			status = "okay";
-			label = "wan";
-			nvmem-cells = <&macaddr_factory_e006>;
-			nvmem-cell-names = "mac-address";
 		};
 	};
 };
