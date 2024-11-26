@@ -37,7 +37,9 @@ platform_do_upgrade() {
 		fw_setenv bootcount 0
 		nand_do_upgrade "$1"
 		;;
-	netgear,wax214)
+	netgear,wax214|\
+	redmi,ax5|\
+	zn,m2)
 		nand_do_upgrade "$1"
 		;;
 	yuncore,fap650)
