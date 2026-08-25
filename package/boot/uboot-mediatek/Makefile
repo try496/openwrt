@@ -544,6 +544,18 @@ define U-Boot/mt7981_konka_komi-a31
   DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr3
 endef
 
+define U-Boot/mt7981_mercusys_mr85x
+  NAME:=MERCUSYS MR85X (UBI)
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=mercusys_mr85x-ubi
+  UBOOT_CONFIG:=mt7981_mercusys_mr85x
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand-ubi
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3-1866
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ubi-ddr3-1866
+endef
+
 define U-Boot/mt7981_netis_eap930-v1
   NAME:=netis EAP930 V1
   BUILD_SUBTARGET:=filogic
@@ -1230,6 +1242,42 @@ define U-Boot/mt7988_bananapi_bpi-r4-poe-snand
   DEPENDS:=+trusted-firmware-a-mt7988-spim-nand-ubi-comb +trusted-firmware-a-mt7988-spim-nand-ubi-comb-4bg
 endef
 
+define U-Boot/mt7988_bananapi_bpi-r4-pro-8x-emmc
+  NAME:=BananaPi BPi-R4 Pro 8X
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro-8x
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-8x-emmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=emmc
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-emmc-comb +trusted-firmware-a-mt7988-emmc-comb-4bg
+endef
+
+define U-Boot/mt7988_bananapi_bpi-r4-pro-8x-sdmmc
+  NAME:=BananaPi BPi-R4 Pro 8X
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro-8x
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-8x-sdmmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=sdmmc
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-sdmmc-comb +trusted-firmware-a-mt7988-sdmmc-comb-4bg
+endef
+
+define U-Boot/mt7988_bananapi_bpi-r4-pro-8x-snand
+  NAME:=BananaPi BPi-R4 Pro 8X
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=bananapi_bpi-r4-pro-8x
+  UBOOT_CONFIG:=mt7988a_bananapi_bpi-r4-pro-8x-snand
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand-ubi
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=comb
+  DEPENDS:=+trusted-firmware-a-mt7988-spim-nand-ubi-comb +trusted-firmware-a-mt7988-spim-nand-ubi-comb-4bg
+endef
+
 define U-Boot/mt7988_rfb-spim-nand
   NAME:=MT7988 Reference Board
   BUILD_SUBTARGET:=filogic
@@ -1350,6 +1398,7 @@ UBOOT_TARGETS := \
 	mt7981_imou_hx21 \
 	mt7981_jcg_q30-pro \
 	mt7981_konka_komi-a31 \
+	mt7981_mercusys_mr85x \
 	mt7981_netis_eap930-v1 \
 	mt7981_netis_n6-v2 \
 	mt7981_netis_nx30v2 \
@@ -1407,6 +1456,9 @@ UBOOT_TARGETS := \
 	mt7988_bananapi_bpi-r4-poe-emmc \
 	mt7988_bananapi_bpi-r4-poe-sdmmc \
 	mt7988_bananapi_bpi-r4-poe-snand \
+	mt7988_bananapi_bpi-r4-pro-8x-emmc \
+	mt7988_bananapi_bpi-r4-pro-8x-sdmmc \
+	mt7988_bananapi_bpi-r4-pro-8x-snand \
 	mt7988_rfb-spim-nand \
 	mt7988_rfb-snand \
 	mt7988_rfb-nor \
